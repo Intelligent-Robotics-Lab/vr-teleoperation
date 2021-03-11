@@ -3,6 +3,7 @@
 This package is for the teleoperation of a humanoid robot using virtual reality technology. It coincides with the publication found in this repository.
 
 Primary Developer: Roman Kulikovskiy
+
 Documentation: Alexander Tyshka
 
 This package was tested on:
