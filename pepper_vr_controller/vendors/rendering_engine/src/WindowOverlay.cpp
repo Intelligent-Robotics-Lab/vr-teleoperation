@@ -18,7 +18,7 @@ WindowOverlay::WindowOverlay(uint32_t bufferColorAttachment)
 
     m_Mesh = std::make_unique<Mesh>(vertices, indices);
 
-    m_Shader = std::make_unique<Shader>("/home/alex/ros/src/pepper_vr_controller/vendors/rendering_engine/shaders/WindowOverlay.vert", "/home/alex/ros/src/pepper_vr_controller/vendors/rendering_engine/shaders/WindowOverlay.frag");
+    m_Shader = std::make_unique<Shader>("/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/shaders/WindowOverlay.vert", "/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/shaders/WindowOverlay.frag");
 }
 
 WindowOverlay::~WindowOverlay()

@@ -119,7 +119,7 @@ void Model::processMaterials(const aiScene *scene, bool flip, std::shared_ptr<Sh
 				int idx = std::string(path.data).rfind("\\");
 				std::string filename = std::string(path.data).substr(idx + 1);
 
-				std::string texPath = std::string("/home/alex/ros/src/pepper_vr_controller/vendors/rendering_engine/textures/") + filename;
+				std::string texPath = std::string("/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/textures/") + filename;
 
                 std::shared_ptr<Texture2D> texture = std::make_shared<Texture2D>(texPath, flip);
 				m_Materials[i] = std::make_shared<Material>(shader, texture);

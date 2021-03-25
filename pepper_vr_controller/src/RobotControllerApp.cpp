@@ -37,8 +37,8 @@ bool RobotController::Init(){
     rendering_engine::Renderer::Init();
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    m_Shader = std::make_shared<rendering_engine::Shader>("/home/alex/ros/src/pepper_vr_controller/vendors/rendering_engine/shaders/MainShader.vert", 
-                                                          "/home/alex/ros/src/pepper_vr_controller/vendors/rendering_engine/shaders/MainShader.frag");
+    m_Shader = std::make_shared<rendering_engine::Shader>("/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/shaders/MainShader.vert", 
+                                                          "/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/shaders/MainShader.frag");
     m_Shader->Bind();
     m_Shader->SetUniformFloat("u_AmbientStrength", m_AmbientStrength);
     m_Shader->SetUniformFloat3("u_LightPos", m_MainLightPos);
@@ -64,7 +64,7 @@ bool RobotController::Init(){
 
     if (m_VRconnected){
         rendering_engine::VRInput::Init();
-        m_ViveController = std::make_unique<rendering_engine::Model>("/home/alex/ros/src/pepper_vr_controller/vendors/rendering_engine/models/vr_controller_vive_1_5/vr_controller_vive_1_5.obj", false, m_Shader);
+        m_ViveController = std::make_unique<rendering_engine::Model>("/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/models/vr_controller_vive_1_5/vr_controller_vive_1_5.obj", false, m_Shader);
         //m_ViveController = std::make_unique<rendering_engine::Model>("/home/yomzyo/temp/leftarm.dae", false, m_Shader);
 
         m_VRWidth = m_VRHmd->GetRecomendedRenderSizeWidth();

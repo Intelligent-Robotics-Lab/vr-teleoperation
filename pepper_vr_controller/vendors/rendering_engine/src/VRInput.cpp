@@ -27,7 +27,7 @@ namespace rendering_engine{
         m_actionRightGripper(vr::k_ulInvalidActionHandle),
         m_actionLeftGripper(vr::k_ulInvalidActionHandle)
     {
-        vr::VRInput()->SetActionManifestPath("/home/alex/ros/src/pepper_vr_controller/vendors/rendering_engine/VRInput/actions.json");
+        vr::VRInput()->SetActionManifestPath("/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/VRInput/actions.json");
 
         vr::VRInput()->GetActionHandle("/actions/main/in/Left_Pose", &m_actionLeftPose);
         vr::VRInput()->GetActionHandle("/actions/main/in/Left_Trigger", &m_actionLeftTrigger);
