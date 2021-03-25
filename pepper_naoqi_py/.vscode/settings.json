@@ -1,0 +1,8 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/yomzyo/pepper_ws/devel/lib/python2.7/dist-packages",
+        "/home/yomzyo/catkin_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages",
+        "/home/yomzyo/naoqi/pynaoqi-python2.7-2.5.7.1-linux64/lib/python2.7/site-packages"
+    ]
+}
