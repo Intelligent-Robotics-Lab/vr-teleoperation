@@ -38,7 +38,8 @@ Add to `~/.bashrc ` file:
 
 ### Other Dependencies
 Install QiBullet 1.4.2 with `pip install --user qibullet==1.4.2`
-Install naoqi_bridge_msgs and libglfw3-dev, libglew-dev, octomap_msgs, octomap, rgbd-launch, camera-info-manager-py naoqi-driver with apt
+Install with apt:
+`sudo apt install ros-melodic-naoqi-bridge-msgs libglfw3-dev libglew-dev ros-melodic-octomap-msgs ros-melodic-octomap ros-melodic-rgbd-launch ros-melodic-camera-info-manager-py ros-melodic-naoqi-driver`
 
 ### VR Teleoperation
 Clone this repository into the ros workspace
@@ -46,7 +47,7 @@ Run a find-and-replace for /home/alex/ros/src/vr-teleoperation/ and change to yo
 
 Run `catkin_make` in your workspace
 Run SteamVR
-Setup Bindings
+#### Setup Bindings
 Start the RobotControllerApp node
 Go to settings > Controllers > Show Old Binding UI -> RobotControllerApp
 Note: the GUI is temperamental and it may require repeated presses to open the bindings for RobotControllerApp
