@@ -1,0 +1,21 @@
+[submodule "rendering_engine/vendors/glfw"]
+	path = pepper_vr_controller/vendors/rendering_engine/vendors/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "rendering_engine/vendors/stb"]
+	path = pepper_vr_controller/vendors/rendering_engine/vendors/stb
+	url = https://github.com/nothings/stb.git
+[submodule "rendering_engine/vendors/glm"]
+	path = pepper_vr_controller/vendors/rendering_engine/vendors/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "rendering_engine/vendors/assimp"]
+	path = pepper_vr_controller/vendors/rendering_engine/vendors/assimp
+	url = https://github.com/yomzyo/assimp.git
+[submodule "rendering_engine/vendors/imgui"]
+	path = pepper_vr_controller/vendors/rendering_engine/vendors/imgui
+	url = https://github.com/yomzyo/imgui.git
+[submodule "pepper_vr_controller/vendors/rendering_engine/vendors/glew"]
+	path = pepper_vr_controller/vendors/rendering_engine/vendors/glew
+	url = https://github.com/nigels-com/glew.git
+[submodule "pepper_vr_controller/vendors/rendering_engine/vendors/openvr"]
+	path = pepper_vr_controller/vendors/rendering_engine/vendors/openvr
+	url = https://github.com/ValveSoftware/openvr.git

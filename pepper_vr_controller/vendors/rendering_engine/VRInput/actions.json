@@ -1,0 +1,45 @@
+{
+    "default_bindings": [
+        {
+            "controller_type" : "vive_controller",
+            "binding_url" : "vive_bindings.json"
+        }
+    ],
+    "actions":[
+        {
+            "name": "/actions/main/in/Left_Pose",
+            "type": "pose"
+        },
+        {
+            "name": "/actions/main/in/Right_Pose",
+            "type": "pose"
+        },
+        {
+            "name": "/actions/main/in/Left_Trigger",
+            "type": "vector1"
+        },
+        {
+            "name": "/actions/main/in/Right_Trigger",
+            "type": "vector1"
+        },
+        {
+            "name": "/actions/main/in/Right_Gripper",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/Left_Gripper",
+            "type": "boolean"
+        }
+    ],
+    "localization" : [
+        {
+            "language_tag": "en_US",
+            "/actions/main/in/Left_Pose": "Left hand pose",
+            "/actions/main/in/Right_Pose": "Right hand pose",
+            "/actions/main/in/Left_Trigger": "Left trigger value",
+            "/actions/main/in/Right_Trigger": "Right trigger value",
+            "/actions/main/in/Left_Gripper": "Left gripper",
+            "/actions/main/in/Right_Gripper": "Right gripper"
+        }
+    ]
+}
