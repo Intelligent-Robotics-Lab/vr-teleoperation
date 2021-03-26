@@ -8,7 +8,7 @@ Primary Developer: Roman Kulikovskiy
 
 Documentation: Alexander Tyshka
 
-This package was tested on:
+# This package was tested on:
 1) Ubuntu 18.04
 2) ROS Melodic
 3) Pepper Robot
