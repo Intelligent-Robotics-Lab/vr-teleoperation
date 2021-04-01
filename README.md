@@ -21,6 +21,10 @@ Documentation: Alexander Tyshka
 - Ubuntu 18.04
 - ROS I (ROS Melodic) 
 - ROS packages for pepper (http://wiki.ros.org/pepper) (http://wiki.ros.org/pepper/Tutorials) or Nao
+    - https://github.com/ahornung/humanoid_msgs
+    - https://github.com/ros-naoqi/naoqi_bridge
+    - https://github.com/ros-naoqi/nao_robot
+    - https://github.com/ros-naoqi/pepper_robot
 
 ## Instructions:
 
@@ -49,7 +53,7 @@ Install with apt:
 Clone this repository into the ros workspace
 Run a find-and-replace for /home/alex/ros/src/vr-teleoperation/ and change to your ros workspace
 This can be done in the IDE of your choice (recommended for verification) or by running the following command in the root of this repository:
-`find ./ -type f -exec sed -i -e 's|/home/alex/ros/src/vr-teleoperation|'`pwd`'|g' {} \;`
+```find ./ -type f -exec sed -i -e 's|/home/alex/ros/src/vr-teleoperation|'`pwd`'|g' {} \;```
 
 Run `catkin_make` in your workspace
 Run SteamVR
@@ -62,6 +66,9 @@ Set up bindings:
     - For both gripper, map to the gripper value action
     - For pose, map both left and right hand raw positions 
  
+![Screenshot from 2021-04-01 15-22-07](https://user-images.githubusercontent.com/19317207/113343704-2aa90300-92fe-11eb-9ee4-00ff5f031f8b.png)
+![Screenshot from 2021-04-01 15-22-34](https://user-images.githubusercontent.com/19317207/113343776-401e2d00-92fe-11eb-8ad5-9035e34a3f2d.png)
+
 Save and exit. The application should be working.
 
 Using real robot:
@@ -76,3 +83,5 @@ Using Simulation:
     roscore
     rosrun pepper_vr_controller RobotControllerApp
     rosrun pepper_naoqi_py pepper_virtual.py --ip <yourRobotIP>
+
+For IP address, on a real robot pepper/nao should speak their IP address after turning on and connecting to the network. For a simulation, 0.0.0.0 can be used for the ip address.
