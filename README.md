@@ -31,12 +31,14 @@ Steam login is
 user: LouieLabOU, password: intelligentlabs
 
 ### Install SteamVR
-Plug in headset and steamVR will prompt to install, or go to market if it does not show up and install steam vr
+Plug in headset and steamVR should prompt to install. If for some reason it does not do so, manually install by opening steam, going to store, and searching for and installing the steamvr app.
 
 ### Install Naoqi python SDK
-https://www.softbankrobotics.com/emea/en/support/pepper-naoqi-2-9/downloads-softwares/former-versions?os=45&category=98
+Download the compressed sdk here, and unzip to a folder/directory of your choice (the following example uses a folder called naoqi in the home directory)
+https://community-static.aldebaran.com/resources/2.5.10/Python%20SDK/pynaoqi-python2.7-2.5.7.1-linux64.tar.gz
 Add to `~/.bashrc ` file:
 `export PYTHONPATH=~/naoqi/pynaoqi-python2.7-2.5.7.1-linux64/lib/python2.7/site-packages:$PYTHONPATH`
+If using another install path, instead use `export PYTHONPATH=<YOUR DIRECTORY>/pynaoqi-python2.7-2.5.7.1-linux64/lib/python2.7/site-packages:$PYTHONPATH`
 
 ### Other Dependencies
 Install QiBullet 1.4.2 with `pip install --user qibullet==1.4.2`
@@ -46,6 +48,8 @@ Install with apt:
 ### VR Teleoperation
 Clone this repository into the ros workspace
 Run a find-and-replace for /home/alex/ros/src/vr-teleoperation/ and change to your ros workspace
+This can be done in the IDE of your choice (recommended for verification) or by running the following command in the root of this repository:
+`find ./ -type f -exec sed -i -e 's|/home/alex/ros/src/vr-teleoperation|'`pwd`'|g' {} \;`
 
 Run `catkin_make` in your workspace
 Run SteamVR
