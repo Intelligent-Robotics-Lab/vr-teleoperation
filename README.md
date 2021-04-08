@@ -88,4 +88,5 @@ For IP address, on a real robot pepper/nao should speak their IP address after t
 
 Audio node:
 - First install audio library with `apt install python-alsaaudio`
+
     rosrun pepper_naoqi_py audio.py --pip <robot-ip>
