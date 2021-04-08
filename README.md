@@ -82,6 +82,6 @@ Using Simulation:
 
     roscore
     rosrun pepper_vr_controller RobotControllerApp
-    rosrun pepper_naoqi_py pepper_virtual.py --ip <yourRobotIP>
+    rosrun pepper_naoqi_py pepper_virtual.py
 
-For IP address, on a real robot pepper/nao should speak their IP address after turning on and connecting to the network. For a simulation, 0.0.0.0 can be used for the ip address.
+For IP address, on a real robot pepper/nao should speak their IP address after turning on and connecting to the network
