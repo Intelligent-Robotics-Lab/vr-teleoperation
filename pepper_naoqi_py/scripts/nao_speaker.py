@@ -45,6 +45,6 @@ class NaoAudio(NaoqiNode):
             r.sleep()
 
 if __name__ == "__main__":
-    NaoSpeaker = NaoAudio('NaoSpeaker')
-    NaoSpeaker.start()
+    nao_speaker = NaoAudio('nao_speaker')
+    nao_speaker.start()
     rospy.spin()
