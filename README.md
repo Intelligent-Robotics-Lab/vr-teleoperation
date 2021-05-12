@@ -6,7 +6,7 @@ This package is for the teleoperation of a humanoid robot using virtual reality 
 
 Primary Developer: Roman Kulikovskiy
 
-Documentation: Alexander Tyshka
+Documentation: Alex Tyshka
 
 # This package was tested on:
 1) Ubuntu 18.04
@@ -91,3 +91,16 @@ First install audio library with `apt install python-alsaaudio`
 Next, run audio node with:
 
     rosrun pepper_naoqi_py audio.py --pip <robot-ip>
+    
+# System Overview
+
+VR Teleoperation consists of several modules/ros nodes: 
+
+- The direct interface with steam is handled by the RobotControllerApp node. This uses the C++ OpenVR API to communicate with the headset. It is listening to the positions of the head and hands, and every time these update it computes joint angles. This is based on a human inverse kinematics model. This node also subscribes to camera data which is displayed on the headset.
+- The pepper_bringup node is responsible for managing all of the general robot functions. Currently, the only topic in use is the camera but it would still be useful for additions such as base movement
+- For controlling joint angles, we use a separate node that subscribes to the joint angles from the RobotControllerApp and outputs them to the robot via naoqi python API.
+- Microphone control consists of several modules. 
+    - For sending audio from the vr headset to the robot speakers, there is no speaker support in the ros driver so we use a custom node, nao_speaker. This uses the Linux alsaaudio API to get audio from the mic and sent it to the robot via Naoqi. There is a known bug with high audio latency when using camera simultaneously. Also note that this node is run through ROS but does not publish any of the data to os topics, this would need to be modified to do so if, for example, the data was logged to ros bags.
+    - For listening to the audio from the robot, there is a node in naoqi_sensors_py that subscribes to the audi through naoqi and publshes it to ROS. A separete node, audio_playback.py, takes this data and outputs to the VR speakers, again using alsaaudio. This part is unaffected by the camera latency issue.
+    - (WIP) New camera system. Given the low resolution of the current camera implementation and impacts on audio, I'm working on a new camera approach using gstreamer. This requires ssh-ing into the pepper robot, running a gstreamer node that publishes video over a UDP socket, and running a listener on the host machine. Verified operation in gstreamer but the ros bridge is a work in progress. This is slighly more work as the ssh must be performed after any reboot, but the performance impact is massive.
+
