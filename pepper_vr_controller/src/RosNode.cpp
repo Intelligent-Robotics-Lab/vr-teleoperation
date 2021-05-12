@@ -23,7 +23,7 @@ RosNode::RosNode()
     e_l_forearm_hand = glm::vec3(0.0, 0.0, -1.0);
     e_l_palm_hand = glm::vec3(1.0, 0.0, 0.0);
 
-    m_ImageSub = std::make_unique<image_transport::Subscriber>(m_ImageTransport.subscribe("/naoqi_driver/camera/front/image_raw", 1, &RosNode::ImageCallback, this));
+    m_ImageSub = std::make_unique<image_transport::Subscriber>(m_ImageTransport.subscribe("/camera/image_raw", 1, &RosNode::ImageCallback, this));
 
     m_JointAnglesPub = std::make_unique<ros::Publisher>(m_Node.advertise<naoqi_bridge_msgs::JointAnglesWithSpeed>("/joint_angles", 1));
     m_JointAnglesMsg.joint_names.resize(14);

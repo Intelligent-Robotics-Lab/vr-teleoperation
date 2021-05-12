@@ -1,0 +1,14 @@
+<launch>
+    <node name="camera_front" pkg="gscam" type="gscam" output="screen">
+      <param name="camera_name" value="front_camera"/>
+      <param name="camera_info_url" value="package://pepper_bringup/config/front_calibration_parameters.ini"/>
+      <param name="gscam_config" value=" udpsrc port=3000 ! application/x-rtp, encoding-name=JPEG,payload=26 ! rtpjpegdepay ! jpegparse"/>
+      <param name="frame_id" value="CameraTop_optical_frame"/>
+      <param name="image_encoding" value="jpeg"/>
+      <!-- <param name="use_gst_timestamps" value="true"/> -->
+      <param name="sync_sink" value="false"/>
+
+      <!-- <remap from="camera/image_raw/compressed"   to="front/image_raw/compressed"/> -->
+      <!-- <remap from="camera/camera_info"            to="front/camera_info"/> -->
+    </node>
+</launch>

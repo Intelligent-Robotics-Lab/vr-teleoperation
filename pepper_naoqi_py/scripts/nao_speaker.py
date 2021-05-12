@@ -33,16 +33,23 @@ class NaoAudio(NaoqiNode):
         self.inp.setrate(22050)
         self.inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
         self.inp.setperiodsize(1000)
+        self.audioProxy.setParameter('outputSampleRate', 22050)
+
+        # flush_timer = rospy.Timer(rospy.Duration(5), self.flush)
 
     def run(self):
-        r=rospy.Rate(1000)
-        self.audioProxy.setOutputVolume(100)
+        r=rospy.Rate(10000)
+        self.audioProxy.setOutputVolume(50)
         while self.is_looping():
             l,data = self.inp.read()
             if l:
                 # Return the maximum of the absolute value of all samples in a fragment.
                 self.audioProxy.sendRemoteBufferToOutput(len(data)/4, data)
             r.sleep()
+
+    def flush(self, event):
+        self.audioProxy.flushAudioOutputs()
+        print "flushing"
 
 if __name__ == "__main__":
     nao_speaker = NaoAudio('nao_speaker')
