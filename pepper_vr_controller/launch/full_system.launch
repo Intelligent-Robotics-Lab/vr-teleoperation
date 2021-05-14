@@ -1,0 +1,13 @@
+<launch>
+    <arg name="ip" default="192.168.1.103"/>
+
+    <node pkg="pepper_vr_controller" type="RobotControllerApp" name="robot_controller"></node>
+    <node pkg="pepper_naoqi_py" type="pepper_node.py" name="pepper_node" args="--ip=$(arg ip)"></node>
+    <node pkg="pepper_naoqi_py" type="audio_playback.py" name="audio_playback" args="--pip=$(arg ip)"></node>
+    <include file="$(find naoqi_sensors_py)/launch/microphone.launch">
+        <arg name="nao_ip" value="$(arg ip)"/>
+    </include>
+    <include file="$(find pepper_sensors_py)/launch/microphone.launch">
+        <arg name="nao_ip" value="$(arg ip)"/>
+    </include>
+</launch>
