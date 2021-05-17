@@ -92,6 +92,15 @@ Next, run audio node with:
 
     rosrun pepper_naoqi_py audio.py --pip <robot-ip>
     
+Camera node:
+
+ssh into pepper and run:
+
+    gst-launch-0.10 -v v4l2src device=/dev/video0 ! 'video/x-raw-yuv,width=640, height=480,framerate=30/1' ! ffmpegcolorspace ! jpegenc ! rtpjpegpay ! udpsink host=192.168.1.102 port=3000
+
+On the main computer run:
+roslaunch pepper_naoqi_py gstreamer.launch
+    
 # System Overview
 
 VR Teleoperation consists of several modules/ros nodes: 
