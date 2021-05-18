@@ -25,6 +25,7 @@ Documentation: Alex Tyshka
     - https://github.com/ros-naoqi/naoqi_bridge
     - https://github.com/ros-naoqi/nao_robot
     - https://github.com/ros-naoqi/pepper_robot
+    - (put these files into your src folder)
 
 ## Instructions:
 
