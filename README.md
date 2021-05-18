@@ -51,12 +51,12 @@ Install with apt:
 `sudo apt install ros-melodic-naoqi-bridge-msgs libglfw3-dev libglew-dev ros-melodic-octomap-msgs ros-melodic-octomap ros-melodic-rgbd-launch ros-melodic-camera-info-manager-py ros-melodic-naoqi-driver`
 
 ### VR Teleoperation
-Clone this repository into the ros workspace
-Run a find-and-replace for /home/alex/ros/src/vr-teleoperation/ and change to your ros workspace
+Clone this repository into the src folder of your ros-workspace
+Run a find-and-replace for /home/alex/ros/src/vr-teleoperation/ and change to your ros-workspace
 This can be done in the IDE of your choice (recommended for verification) or by running the following command in the root of this repository:
 ```find ./ -type f -exec sed -i -e 's|/home/alex/ros/src/vr-teleoperation|'`pwd`'|g' {} \;```
 
-Run `catkin_make` in your workspace
+Run `catkin_make` in your ros-workspace directory
 Run SteamVR
 #### Setup Bindings
 Start the RobotControllerApp node
