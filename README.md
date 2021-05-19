@@ -57,10 +57,14 @@ This can be done in the IDE of your choice (recommended for verification) or by 
 ```find ./ -type f -exec sed -i -e 's|/home/alex/ros/src/vr-teleoperation|'`pwd`'|g' {} \;```
 
 Run `catkin_make` in your ros-workspace directory
+
+NOTE: May need to move the two folders from the vr-teleoperation folder into your ros-workspace/src/ folder if later when attempting to run the RobotControllerApp the program has trouble finding the shaders.
+
 Run SteamVR
 #### Setup Bindings
-Start the RobotControllerApp node
-Go to settings > Controllers > Show Old Binding UI -> RobotControllerApp
+Before you can start the RobotControllerApp, you need to have two terminals open one in the ros-workspace and the other can be either there or a directory above it. In the latter enter the command ```roscore```. In the former you can run the command ```source devel/setup.bash``` and then run the command ```rosrun pepper_vr_controller RobotControllerApp``` to Start the RobotControllerApp node. NOTE: this command won't run until you have SteamVR open.
+
+In the SteamVR application go to settings > Controllers > Show Old Binding UI -> RobotControllerApp
 Note: the GUI is temperamental and it may require repeated presses to open the bindings for RobotControllerApp
 Set up bindings:
     - For both triggers, map to the click action
