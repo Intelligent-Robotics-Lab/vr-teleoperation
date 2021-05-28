@@ -58,7 +58,15 @@ This can be done in the IDE of your choice (recommended for verification) or by 
 
 Run `catkin_make` in your ros-workspace directory
 
+Potential Error:
+
+![Screenshot from 2021-05-28 12-12-04](https://user-images.githubusercontent.com/18145221/120015119-ef9b1700-bfb0-11eb-9a2e-e70de5a3a8cd.png)
+
+
+If `catkin_make` fails you may need to download git kraken and open the vr-teleoperation repo with it. Scroll down to the bottom left and initialize the 7 submodules there. After that finishes you should be able to `catkin_make`
+
 NOTE: May need to move the two folders from the vr-teleoperation folder into your ros-workspace/src/ folder if later when attempting to run the RobotControllerApp the program has trouble finding the shaders.
+
 
 Run SteamVR
 #### Setup Bindings
