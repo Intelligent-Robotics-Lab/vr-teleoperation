@@ -6,7 +6,7 @@ This package is for the teleoperation of a humanoid robot using virtual reality 
 
 Primary Developer: Roman Kulikovskiy
 
-Documentation: Alex Tyshka
+Documentation: Alex Tyshka, Sean Dallas
 
 # This package was tested on:
 1) Ubuntu 18.04
