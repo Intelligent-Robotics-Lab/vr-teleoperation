@@ -1,6 +1,6 @@
 # vr-teleoperation
 
-This package is for the teleoperation of a humanoid robot using virtual reality technology. It coincides with the publication found in this repository.
+This package is for the teleoperation of a humanoid robot using virtual reality technology. It coincides with the publication found in this repository: https://github.com/Intelligent-Robotics-Lab/vr-teleoperation/blob/main/IEEE_ICRA_2021.pdf
 
 # Contributors
 
