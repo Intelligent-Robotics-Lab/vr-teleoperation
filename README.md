@@ -1,12 +1,19 @@
-# vr-teleoperation
+# Virtual Reality Teleoperation of a Humanoid Robot
 
-This package is for the teleoperation of a humanoid robot using virtual reality technology. It coincides with the publication found in this repository: https://github.com/Intelligent-Robotics-Lab/vr-teleoperation/blob/main/IEEE_ICRA_2021.pdf
+This package is for the teleoperation of a humanoid robot using virtual reality technology. It coincides with the publication:
+
+R. Kulikovskiy, M. Sochanski, A. Hijaz, M. Eaton, J. Korneder, and W.-Y. G. Louie, “Can Therapists Design Robot-Mediated Interventions and Teleoperate Robots Using VR to Deliver Interventions for ASD?,” IEEE International Conference on Robotics and Automation, 2021.
+
+Pre-Print Available at: https://github.com/Intelligent-Robotics-Lab/vr-teleoperation/blob/main/IEEE_ICRA_2021.pdf
 
 # Contributors
 
 Primary Developer: Roman Kulikovskiy
 
 Documentation: Alex Tyshka, Sean Dallas
+
+# Intelligent Robotics Lab Info
+For more information on the Intelligent Robotics Lab at Oakland University visit: https://www.geoffrey-louie.com/team
 
 # This package was tested on:
 1) Ubuntu 18.04
