@@ -42,6 +42,13 @@ public:
     void CalibrateRightArm(glm::mat4 transform);
     void CalibrateLeftArm(glm::mat4 transform);
 
+    //new code for dpad movement 2022
+    void SetDpadUp(bool DpadForward);
+    void SetDpadDown(bool DpadBackward);
+    void SetDpadRight(bool DpadRight);
+    void SetDpadLeft(bool DpadLeft);
+
+    
     // Temporary
     float ElbowRoll, ElbowYaw, ShoulderPitch, ShoulderRoll, WristYaw;
 
@@ -50,6 +57,15 @@ private:
     std::unique_ptr<ros::Publisher> m_JointAnglesPub;
     naoqi_bridge_msgs::JointAnglesWithSpeed m_JointAnglesMsg;
     ros::Timer m_Timer;
+
+
+private:
+    //new code dpad movement 5/2022
+    std::unique_ptr<ros::Publisher> m_DpadPub;
+    geometry_msgs::Twist m_TwistMsg;
+    bool up,down,left,right;
+
+
 private:
     glm::mat4 m_GroundToHeadTransform;
     glm::mat4 m_GroundToRightControllerTransform;

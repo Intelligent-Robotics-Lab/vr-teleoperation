@@ -23,6 +23,22 @@
             "type": "vector1"
         },
         {
+            "name": "/actions/main/in/Dpad_Move_Forward",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/Dpad_Move_Backward",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/Dpad_Turn_Left",
+            "type": "boolean"
+        },
+        {
+            "name": "/actions/main/in/Dpad_Turn_Right",
+            "type": "boolean"
+        },
+        {
             "name": "/actions/main/in/Right_Gripper",
             "type": "boolean"
         },
@@ -39,6 +55,10 @@
             "/actions/main/in/Left_Trigger": "Left trigger value",
             "/actions/main/in/Right_Trigger": "Right trigger value",
             "/actions/main/in/Left_Gripper": "Left gripper",
+            "/actions/main/in/Dpad_Move_forward": "Dpad Forward",
+            "/actions/main/in/Dpad_Move_Backward": "Dpad Backward",
+            "/actions/main/in/Dpad_Turn_Right": "Dpad Right",
+            "/actions/main/in/Dpad_Turn_Left": "Dpad Left",
             "/actions/main/in/Right_Gripper": "Right gripper"
         }
     ]

@@ -170,7 +170,15 @@ bool RobotController::Run(){
             m_RosNode->SetLeftArm(m_LeftControllerTransform);
             m_RosNode->SetRightHand(rendering_engine::VRInput::GetRightTriggerValue());
             m_RosNode->SetLeftHand(rendering_engine::VRInput::GetLeftTriggerValue());
-                
+
+            //new code for robot dpad movement 5/2022 -- this code here calls functions in rosnode.cpp and passes information from vrinput.cpp 
+            m_RosNode->SetDpadUp(rendering_engine::VRInput::GetForwardDpadState());
+            m_RosNode->SetDpadDown(rendering_engine::VRInput::GetBackwardDpadState());
+            m_RosNode->SetDpadRight(rendering_engine::VRInput::GetRightDpadState());
+            m_RosNode->SetDpadLeft(rendering_engine::VRInput::GetLeftDpadState());
+            
+          
+
             glm::mat4 camViewTransform = glm::translate(m_VRHmd->GetTransform(), glm::vec3(0.0f, 0.0f, -3.0));
             m_CameraView->SetTransform(camViewTransform);
             if (!m_RosNode->GetImageData().empty()) {
@@ -312,6 +320,7 @@ void RobotController::draw_gui(){
     ImGui::NewLine();
     ImGui::Text("To begin robot control, confirm that you are ready by checking check box below.");
     ImGui::Text("Then press right gripper button to start control.");
+    ImGui::Text("To controll the robots movements use the left dpad.")
     ImGui::NewLine();
     ImGui::Checkbox("User ready", &m_UserReadyToControl);
     ImGui::NewLine();
