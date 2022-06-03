@@ -64,7 +64,7 @@ void RosNode::TimerCallback(const ros::TimerEvent& event){
     }
     else if(down) { 
 
-        m_TwistMsg.linear.x = -05;
+        m_TwistMsg.linear.x = -0.5;
         
 
     }
