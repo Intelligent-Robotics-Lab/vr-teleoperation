@@ -139,7 +139,7 @@ bool RobotController::Run(){
         switch (m_ModeOfOperation) {
         case ModeOfOperation::Standby:
         {
-            if (m_VRconnected && m_UserReadyToControl && m_GripperRisingEdge){
+            if (m_VRconnected && m_GripperRisingEdge){
                 m_ModeOfOperation = ModeOfOperation::RobotControl;
                 m_Canvas->SetTransform(m_RobotControlCanvasTransform);
                 break;

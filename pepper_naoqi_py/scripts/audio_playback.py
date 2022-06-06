@@ -15,19 +15,23 @@ class AudioPlayback():
         self.outp.setchannels(4)
         self.outp.setrate(16000)
         self.outp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
-        self.outp.setperiodsize(10000)
+        self.outp.setperiodsize(1365)
         self.sub_mic = rospy.Subscriber("naoqi_microphone/audio_raw", AudioBuffer, self.recv_audio, queue_size=1000)
         self.output_buffer = []
         self.timer = rospy.Timer(rospy.Duration(0.00001), self.send_audio)
 
     def recv_audio(self, msg):
-        # print struct.pack('%uh' % len(msg.data), *msg.data)
-        self.output_buffer.append(msg.data)
+	data = msg.data
+        #print struct.pack('%uh' % len(msg.data), *msg.data)
+	self.outp.write(struct.pack('%uh' % len(data), *data))
+        #self.output_buffer.append(msg.data)
         # 
     
     def send_audio(self, event):
         if (len(self.output_buffer) > 0):
+            
             data = self.output_buffer.pop()
+            print(len(data))
             self.outp.write(struct.pack('%uh' % len(data), *data))
         # else:
         #     data = [0, 0, 0, 0]

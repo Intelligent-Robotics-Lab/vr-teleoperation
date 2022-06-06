@@ -30,19 +30,17 @@ class NaoAudio(NaoqiNode):
 
         # Set attributes: Mono, 8000 Hz, 16 bit little endian samples
         self.inp.setchannels(2)
-        self.inp.setrate(15900)
+        self.inp.setrate(22050)
         self.inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
         self.inp.setperiodsize(1000)
-        self.audioProxy.setParameter('outputSampleRate', 16000)
 
         # flush_timer = rospy.Timer(rospy.Duration(5), self.flush)
 
     def run(self):
         r=rospy.Rate(10000)
-        self.audioProxy.setOutputVolume(75)
+        self.audioProxy.setOutputVolume(100)
         while self.is_looping():
             l,data = self.inp.read()
-            print l
             if l:
                 # Return the maximum of the absolute value of all samples in a fragment.
                 self.audioProxy.sendRemoteBufferToOutput(len(data)/4, data)
@@ -53,6 +51,6 @@ class NaoAudio(NaoqiNode):
         print "flushing"
 
 if __name__ == "__main__":
-    nao_speaker = NaoAudio('nao_speaker')
-    nao_speaker.start()
+    NaoSpeaker = NaoAudio('NaoSpeaker')
+    NaoSpeaker.start()
     rospy.spin()

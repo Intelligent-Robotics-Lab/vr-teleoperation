@@ -22,7 +22,7 @@ RosNode::RosNode()
     p_l_elbow_hand = glm::vec4(0.0, 0.0, 0.35, 1.0);
     e_l_forearm_hand = glm::vec3(0.0, 0.0, -1.0);
     e_l_palm_hand = glm::vec3(1.0, 0.0, 0.0);
-
+    new_pose = false;
     m_ImageSub = std::make_unique<image_transport::Subscriber>(m_ImageTransport.subscribe("/camera/image_raw", 1, &RosNode::ImageCallback, this));
 
     m_JointAnglesPub = std::make_unique<ros::Publisher>(m_Node.advertise<naoqi_bridge_msgs::JointAnglesWithSpeed>("/joint_angles", 1));
@@ -44,9 +44,12 @@ RosNode::~RosNode(){
 }
 
 void RosNode::TimerCallback(const ros::TimerEvent& event){
-    m_JointAnglesMsg.header.stamp = event.current_real;
-    m_JointAnglesMsg.speed = 1.0f;
-    m_JointAnglesPub->publish(m_JointAnglesMsg);
+    if (new_pose) {
+        m_JointAnglesMsg.header.stamp = event.current_real;
+        m_JointAnglesMsg.speed = 1.0f;
+        m_JointAnglesPub->publish(m_JointAnglesMsg);
+        new_pose = false;
+        }
 }
 
 void RosNode::ImageCallback(const sensor_msgs::ImageConstPtr& msg){
@@ -72,6 +75,7 @@ int RosNode::GetImageHeight(){
 }
 
 void RosNode::SetHead(glm::mat4 transform){
+    new_pose = true;
     if (transform != glm::mat4(1.0) || transform != glm::mat4(0.0))
         m_GroundToHeadTransform = transform;
 
@@ -85,6 +89,7 @@ void RosNode::SetHead(glm::mat4 transform){
 
 
 void RosNode::SetLeftArm(glm::mat4 transform){
+    new_pose = true;
     m_GroundToLeftControllerTransform = transform;
     PublishTransformMsg(transform, "Ground", "LeftController");
 
@@ -150,6 +155,7 @@ void RosNode::SetLeftArm(glm::mat4 transform){
 
 
 void RosNode::SetRightArm(glm::mat4 transform){
+    new_pose = true;
     m_GroundToRightControllerTransform = transform;
     PublishTransformMsg(transform, "Ground", "RightController");
 
@@ -210,10 +216,12 @@ void RosNode::SetRightArm(glm::mat4 transform){
 }
 
 void RosNode::SetRightHand(float gripperVal){
+    new_pose = true;
     m_JointAnglesMsg.joint_angles[AngleIndex::RHand] = 1.0f - gripperVal;
 }
 
 void RosNode::SetLeftHand(float gripperVal){
+    new_pose = true;
     m_JointAnglesMsg.joint_angles[AngleIndex::LHand] = 1.0f - gripperVal;
 }
 
