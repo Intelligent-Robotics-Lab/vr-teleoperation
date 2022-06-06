@@ -1,5 +1,5 @@
 #include "pepper_vr_controller/RobotControllerApp.h"
-
+#include <ros/package.h>
 
 RobotController::RobotController(int argc, char** argv)
      :
@@ -37,8 +37,8 @@ bool RobotController::Init(){
     rendering_engine::Renderer::Init();
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    m_Shader = std::make_shared<rendering_engine::Shader>("/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/shaders/MainShader.vert", 
-                                                          "/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/shaders/MainShader.frag");
+    m_Shader = std::make_shared<rendering_engine::Shader>(ros::package::getPath("pepper_vr_controller") + "/vendors/rendering_engine/shaders/MainShader.vert", 
+                                                          ros::package::getPath("pepper_vr_controller") + "/vendors/rendering_engine/shaders/MainShader.frag");
     m_Shader->Bind();
     m_Shader->SetUniformFloat("u_AmbientStrength", m_AmbientStrength);
     m_Shader->SetUniformFloat3("u_LightPos", m_MainLightPos);
@@ -64,7 +64,7 @@ bool RobotController::Init(){
 
     if (m_VRconnected){
         rendering_engine::VRInput::Init();
-        m_ViveController = std::make_unique<rendering_engine::Model>("/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/models/vr_controller_vive_1_5/vr_controller_vive_1_5.obj", false, m_Shader);
+        m_ViveController = std::make_unique<rendering_engine::Model>(ros::package::getPath("pepper_vr_controller") + "/vendors/rendering_engine/models/vr_controller_vive_1_5/vr_controller_vive_1_5.obj", false, m_Shader);
         //m_ViveController = std::make_unique<rendering_engine::Model>("/home/yomzyo/temp/leftarm.dae", false, m_Shader);
 
         m_VRWidth = m_VRHmd->GetRecomendedRenderSizeWidth();
@@ -170,7 +170,15 @@ bool RobotController::Run(){
             m_RosNode->SetLeftArm(m_LeftControllerTransform);
             m_RosNode->SetRightHand(rendering_engine::VRInput::GetRightTriggerValue());
             m_RosNode->SetLeftHand(rendering_engine::VRInput::GetLeftTriggerValue());
-                
+
+            //new code for robot dpad movement 5/2022 -- this code here calls functions in rosnode.cpp and passes information from vrinput.cpp 
+            m_RosNode->SetDpadUp(rendering_engine::VRInput::GetForwardDpadState());
+            m_RosNode->SetDpadDown(rendering_engine::VRInput::GetBackwardDpadState());
+            m_RosNode->SetDpadRight(rendering_engine::VRInput::GetRightDpadState());
+            m_RosNode->SetDpadLeft(rendering_engine::VRInput::GetLeftDpadState());
+            
+          
+
             glm::mat4 camViewTransform = glm::translate(m_VRHmd->GetTransform(), glm::vec3(0.0f, 0.0f, -3.0));
             m_CameraView->SetTransform(camViewTransform);
             if (!m_RosNode->GetImageData().empty()) {
@@ -312,6 +320,7 @@ void RobotController::draw_gui(){
     ImGui::NewLine();
     ImGui::Text("To begin robot control, confirm that you are ready by checking check box below.");
     ImGui::Text("Then press right gripper button to start control.");
+    ImGui::Text("To control the robots movements use the left dpad.");
     ImGui::NewLine();
     ImGui::Checkbox("User ready", &m_UserReadyToControl);
     ImGui::NewLine();

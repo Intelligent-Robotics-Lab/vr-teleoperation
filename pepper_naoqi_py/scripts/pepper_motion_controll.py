@@ -1,7 +1,10 @@
 import qi
 import rospy
+import geometry_msgs
+
 
 from naoqi_bridge_msgs.msg import  JointAnglesWithSpeed
+from geometry_msgs.msg import Twist
 
 class PepperMotionControll:
     def __init__(self, session):
@@ -11,7 +14,7 @@ class PepperMotionControll:
         self.motion_service.setStiffnesses("Body", 1.0)
         self.autonomous_service.setState("disabled")
         self.motion_service.wakeUp()
-        self.sub = rospy.Subscriber('/joint_angles', JointAnglesWithSpeed, self.callback) 
+        self.sub = rospy.Subscriber('/joint_angles', JointAnglesWithSpeed, self.callback)
         self.sub_movement = rospy.Subscriber('/DpadMovement', Twist, self.callback_movement) 
 
     def callback(self, msg):
@@ -20,5 +23,4 @@ class PepperMotionControll:
     def callback_movement(self, msg):
 
         self.motion_service.moveToward(msg.linear.x, 0, msg.angular.z )
-        
         

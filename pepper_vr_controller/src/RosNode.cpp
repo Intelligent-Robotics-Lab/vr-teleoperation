@@ -37,6 +37,13 @@ RosNode::RosNode()
     m_Timer = m_Node.createTimer(ros::Duration(0.1), &RosNode::TimerCallback, this);
 
     m_TransformMsgPub = std::make_unique<ros::Publisher>(m_Node.advertise<geometry_msgs::TransformStamped>("/VRTransforms", 1));
+
+
+    ///////new code for dpad movement 5/2022
+    m_DpadPub = std::make_unique<ros::Publisher>(m_Node.advertise<geometry_msgs::Twist>("/DpadMovement", 1 ));
+    
+    
+
 }
 
 RosNode::~RosNode(){
@@ -49,7 +56,43 @@ void RosNode::TimerCallback(const ros::TimerEvent& event){
         m_JointAnglesMsg.speed = 1.0f;
         m_JointAnglesPub->publish(m_JointAnglesMsg);
         new_pose = false;
-        }
+    }
+    //new code for dpad movement 5/2022
+    if(up) {
+
+        m_TwistMsg.linear.x = 0.5; 
+         
+
+    }
+    else if(down) { 
+
+        m_TwistMsg.linear.x = -0.5;
+        
+
+    }
+    else {
+
+         m_TwistMsg.linear.x = 0;
+
+    }
+             
+    if(right) {
+
+    m_TwistMsg.angular.z = -0.5; 
+    
+
+    }
+    else if(left) { 
+
+        m_TwistMsg.angular.z = 0.5;
+    }
+    else {
+
+         m_TwistMsg.angular.z = 0;
+
+    }
+       
+    m_DpadPub->publish(m_TwistMsg);
 }
 
 void RosNode::ImageCallback(const sensor_msgs::ImageConstPtr& msg){
@@ -224,6 +267,32 @@ void RosNode::SetLeftHand(float gripperVal){
     new_pose = true;
     m_JointAnglesMsg.joint_angles[AngleIndex::LHand] = 1.0f - gripperVal;
 }
+
+//new code for robot dpad movement 5/2022
+
+void RosNode::SetDpadUp(bool DpadForward) { // these 4 functions call to pepper_motion_controll.py. There a subscriber takes this informaton.
+
+    up = DpadForward;
+}
+
+void RosNode::SetDpadDown(bool DpadBackward) {
+
+    down = DpadBackward;
+
+}
+
+void RosNode::SetDpadRight(bool DpadRight) {
+
+    right = DpadRight;
+    
+}
+
+void RosNode::SetDpadLeft(bool DpadLeft) {
+
+    left = DpadLeft;
+
+}
+
 
 void RosNode::CalibrateRightArm(glm::mat4 transform){
     glm::mat4 t_shoulder_to_head = { 0.0,  0.0, -1.0, 0.100,
