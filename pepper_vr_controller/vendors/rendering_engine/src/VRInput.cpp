@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "rendering_engine/Utilities.h"
+#include <ros/package.h>
 
 namespace rendering_engine{
 
@@ -33,7 +34,7 @@ namespace rendering_engine{
         m_actionDpadTurnRight(vr::k_ulInvalidActionHandle),
         m_actionDpadTurnLeft(vr::k_ulInvalidActionHandle)
     {
-        vr::VRInput()->SetActionManifestPath("/home/alex/ros/src/vr-teleoperation/pepper_vr_controller/vendors/rendering_engine/VRInput/actions.json");
+        vr::VRInput()->SetActionManifestPath((ros::package::getPath("pepper_vr_controller") + "/vendors/rendering_engine/VRInput/actions.json").c_str());
 
         vr::VRInput()->GetActionHandle("/actions/main/in/Left_Pose", &m_actionLeftPose);
         vr::VRInput()->GetActionHandle("/actions/main/in/Left_Trigger", &m_actionLeftTrigger);
@@ -198,70 +199,5 @@ namespace rendering_engine{
             return DpadData.bState;
         }
     }
-/* 
-     bool VRInput::GetForwardDpadPressImpl(){
-        vr::InputDigitalActionData_t DpadData;
-        if( vr::VRInput()->GetDigitalActionData(m_actionDpadMoveForward, &DpadData, sizeof(DpadData), vr::k_ulInvalidInputValueHandle ) != vr::VRInputError_None && !DpadData.bActive){
-            return false;
-        } else {
-            return DpadData.bState & DpadData.bChanged;
-        }
-    }
-    bool VRInput::GetBackwardDpadPressImpl(){
-        vr::InputDigitalActionData_t DpadData;
-        if( vr::VRInput()->GetDigitalActionData(m_actionDpadMoveBackward, &DpadData, sizeof(DpadData), vr::k_ulInvalidInputValueHandle ) != vr::VRInputError_None && !DpadData.bActive){
-            return false;
-        } else {
-            return DpadData.bState & DpadData.bChanged;
-        }
-    }
-      bool VRInput::GetRightDpadPressImpl(){
-        vr::InputDigitalActionData_t DpadData;
-        if( vr::VRInput()->GetDigitalActionData(m_actionDpadTurnRight, &DpadData, sizeof(DpadData), vr::k_ulInvalidInputValueHandle ) != vr::VRInputError_None && !DpadData.bActive){
-            return false;
-        } else {
-            return DpadData.bState & DpadData.bChanged;
-        }
-    }
-      bool VRInput::GetLeftDpadPressImpl(){
-        vr::InputDigitalActionData_t DpadData;
-        if( vr::VRInput()->GetDigitalActionData(m_actionDpadTurnLeft, &DpadData, sizeof(DpadData), vr::k_ulInvalidInputValueHandle ) != vr::VRInputError_None && !DpadData.bActive){
-            return false;
-        } else {
-            return DpadData.bState & DpadData.bChanged;
-        }
-    }
-    bool VRInput::GetForwardDpadReleaseImpl(){
-        vr::InputDigitalActionData_t DpadData;
-        if( vr::VRInput()->GetDigitalActionData(m_actionDpadMoveForward, &DpadData, sizeof(DpadData), vr::k_ulInvalidInputValueHandle ) != vr::VRInputError_None && !DpadData.bActive){
-            return false;
-        } else {
-            return !DpadData.bState & DpadData.bChanged;
-        }
-    }
-    bool VRInput::GetBackwardDpadReleaseImpl(){
-        vr::InputDigitalActionData_t DpadData;
-        if( vr::VRInput()->GetDigitalActionData(m_actionDpadMoveBackward, &DpadData, sizeof(DpadData), vr::k_ulInvalidInputValueHandle ) != vr::VRInputError_None && !DpadData.bActive){
-            return false;
-        } else {
-            return !DpadData.bState & DpadData.bChanged;
-        }
-    }
-     bool VRInput::GetRightDpadReleaseImpl(){
-        vr::InputDigitalActionData_t DpadData;
-        if( vr::VRInput()->GetDigitalActionData(m_actionDpadTurnRight, &DpadData, sizeof(DpadData), vr::k_ulInvalidInputValueHandle ) != vr::VRInputError_None && !DpadData.bActive){
-            return false;
-        } else {
-            return !DpadData.bState & DpadData.bChanged;
-        }
-    }
-     bool VRInput::GetLeftDpadReleaseImpl(){
-        vr::InputDigitalActionData_t DpadData;
-        if( vr::VRInput()->GetDigitalActionData(m_actionDpadTurnLeft, &DpadData, sizeof(DpadData), vr::k_ulInvalidInputValueHandle ) != vr::VRInputError_None && !DpadData.bActive){
-            return false;
-        } else {
-            return !DpadData.bState & DpadData.bChanged;
-        }
-    } */
 
 }

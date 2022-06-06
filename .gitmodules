@@ -16,6 +16,8 @@
 [submodule "pepper_vr_controller/vendors/rendering_engine/vendors/glew"]
 	path = pepper_vr_controller/vendors/rendering_engine/vendors/glew
 	url = https://github.com/nigels-com/glew.git
+        ignore = dirty
 [submodule "pepper_vr_controller/vendors/rendering_engine/vendors/openvr"]
 	path = pepper_vr_controller/vendors/rendering_engine/vendors/openvr
 	url = https://github.com/ValveSoftware/openvr.git
+        ignore = dirty
