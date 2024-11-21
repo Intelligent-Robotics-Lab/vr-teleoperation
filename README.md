@@ -39,7 +39,6 @@ For more information on the Intelligent Robotics Lab at Oakland University visit
 ### Install Steam
     sudo add-apt-repository multiverse
     sudo apt install steam steam-devices libvulkan1
-Steam login is 
 
 ### Install SteamVR
 Plug in headset and steamVR should prompt to install. If for some reason it does not do so, manually install by opening steam, going to store, and searching for and installing the steamvr app.
